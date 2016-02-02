@@ -90,9 +90,9 @@ public class StarDuck extends Actor
         if(getX() == getWorld().getWidth() - 1) {
             Greenfoot.setWorld(new Scene2(this));
         }
-        collisionDetection();        
-        applyGravity();
 
+        applyGravity();
+        collisionDetection();        
     }
     
     private void applyGravity() {
