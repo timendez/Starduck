@@ -40,6 +40,7 @@ public class StarBall extends Actor
         setImage(images[count]);
         
         checkAtEdge();
+        collisionDetection();
     }  
     
     public StarBall(boolean isRight) {
@@ -54,5 +55,15 @@ public class StarBall extends Actor
              getWorld().removeObject(this);
         }
         
+    }
+    
+    private void collisionDetection() {
+        Actor zombie = this.getOneIntersectingObject(Zombie.class);
+
+        // Collision
+        if(zombie != null) {
+            ((Zombie)zombie).takeDamage(1);
+            getWorld().removeObject(this);
+        }
     }
 }

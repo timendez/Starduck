@@ -7,4 +7,6 @@ comment2.params=isRight
 comment2.target=StarBall(boolean)
 comment3.params=
 comment3.target=void\ checkAtEdge()
-numComments=4
+comment4.params=
+comment4.target=void\ collisionDetection()
+numComments=5
