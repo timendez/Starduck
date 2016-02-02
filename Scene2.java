@@ -25,11 +25,8 @@ public class Scene2 extends World
         addObject(platform, 300, 400);
         addObject(starduck, 0, starduck.getY());
         
-        addObject(new Stair1(), 300, 300);
-        addObject(new Stair2(), 400, 225);
-        addObject(new Stair3(), 460, 150);
-        addObject(new Stair4(), 530, 100);
-        addObject(new SPower(), 530, 70);
+        addObject(new OscillatingPlatform(0,500,2), 530, 300); 
+        addObject(new SPower(), 530, 350); // y == 70
         
         this.starduck = starduck;
     }

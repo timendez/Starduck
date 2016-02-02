@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=OscillatingActor
+comment0.text=\n\ Write\ a\ description\ of\ class\ OscillatingActor\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=xRange\ yRange\ speed
+comment1.target=OscillatingActor(int,\ int,\ int)
+comment2.params=
+comment2.target=int\ getStartX()
+comment2.text=public\ OscillatingActor(int\ xRange,\ int\ yRange,\ int\ speed,\ String\ basename,\ String\ suffix,\ int\ noOfImages,\ int\ delay)\n\ \ \ \ {\n\ \ \ \ \ \ \ \ super(basename,\ suffix,\ noOfImages,\ delay);\n\ \ \ \ \ \ \ \ \n\ \ \ \ \ \ \ \ this.xRange\ \=\ xRange;\n\ \ \ \ \ \ \ \ this.yRange\ \=\ yRange;\n\ \ \ \ \ \ \ \ this.speed\ \=\ speed;\n\ \ \ \ \ \ \ \ this.xOscillation\ \=\ 0;\n\ \ \ \ \ \ \ \ this.yOscillation\ \=\ 0;\n\ \ \ \ \ \ \ \ movingRight\ \=\ true;\n\ \ \ \ \ \ \ \ movingDown\ \=\ true;\n\ \ \ \ }\n
+comment3.params=
+comment3.target=int\ getStartY()
+comment4.params=
+comment4.target=int\ getXRange()
+comment5.params=
+comment5.target=int\ getYRange()
+comment6.params=
+comment6.target=int\ getSpeed()
+comment7.params=
+comment7.target=int\ getMovementState()
+comment8.params=
+comment8.target=void\ act()
+comment8.text=\n\ Act\ -\ do\ whatever\ the\ OscillatingActor\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+numComments=9

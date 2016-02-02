@@ -14,6 +14,14 @@ public class StarDuck extends Actor
     // Level advancement
     private boolean allowAdvance = false;
     
+    // Direction
+    private boolean isRight = true;
+    
+    // Shooting Time
+    private int count = 0;
+    public int WAIT_TIME = 50;
+    private boolean coolDown = false;
+
     // Upgrades
     private boolean hasSpower = false;
     private boolean hasCape = false;
@@ -43,6 +51,8 @@ public class StarDuck extends Actor
             walkIdx = walkIdx == 3 ? 0 : walkIdx + 1;
             setImage(walking[walkIdx]);
             getImage().mirrorHorizontally();
+            
+            isRight = false;
         }
         else if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) {
             if(getX() + 3 < getWorld().getWidth() || allowAdvance)
@@ -50,20 +60,37 @@ public class StarDuck extends Actor
             
             walkIdx = walkIdx == 3 ? 0 : walkIdx + 1;
             setImage(walking[walkIdx]);
+            
+            isRight = true;
         }
-
-        if(Greenfoot.isKeyDown("space")) {
+        
+        if(Greenfoot.isKeyDown("b") && hasSpower && !coolDown) {
+            shootBall();
+            count = WAIT_TIME;
+            coolDown = true;
+        }
+        
+        if(coolDown) {
+            if (count-- == 0) {
+                System.out.println("here");
+                coolDown = false;
+            } 
+        }
+        
+        if(Greenfoot.isKeyDown("space") && velocity == 0 && hasSpower) {
             velocity = -35;
             
             walkIdx = walkIdx == 3 ? 0 : walkIdx + 1;
             setImage(walking[walkIdx]);
         }
         
+
+        
         if(getX() == getWorld().getWidth() - 1) {
             Greenfoot.setWorld(new Scene2(this));
         }
         
-        applyGravity();
+        //applyGravity();
         collisionDetection();
     }
     
@@ -101,5 +128,14 @@ public class StarDuck extends Actor
         walking[1] = "swalking2.png";
         walking[2] = "swalking3.png";
         walking[3] = "swalking4.png";
+   }
+   
+   public boolean getIsRight(){
+       return isRight;
+   }
+   
+   public void shootBall() {
+       StarBall sBall = new StarBall(isRight);
+       getWorld().addObject(sBall, getX(), getY());
    }
 }

@@ -1,11 +1,11 @@
 #BlueJ class context
 comment0.target=StarDuck
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ StarDuck\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\n\ Write\ a\ description\ of\ class\ StarDuck\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=
 comment1.target=StarDuck()
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ StarDuck\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment2.text=\n\ Act\ -\ do\ whatever\ the\ StarDuck\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
 comment3.params=
 comment3.target=void\ applyGravity()
 comment4.params=
@@ -16,4 +16,8 @@ comment6.params=allow
 comment6.target=void\ setAdvance(boolean)
 comment7.params=has
 comment7.target=void\ setSPower(boolean)
-numComments=8
+comment8.params=
+comment8.target=boolean\ getIsRight()
+comment9.params=
+comment9.target=void\ shootBall()
+numComments=10
