@@ -1,4 +1,5 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
+import java.util.List;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Write a description of class StarDuck here.
@@ -89,9 +90,9 @@ public class StarDuck extends Actor
         if(getX() == getWorld().getWidth() - 1) {
             Greenfoot.setWorld(new Scene2(this));
         }
-        
-        //applyGravity();
-        collisionDetection();
+        collisionDetection();        
+        applyGravity();
+
     }
     
     private void applyGravity() {
@@ -104,13 +105,21 @@ public class StarDuck extends Actor
     }
     
     private void collisionDetection() {
-        Actor a = this.getOneIntersectingObject(Platform.class);
+        List<Platform> touchings = this.getObjectsAtOffset(0, this.getImage().getHeight() / 2 + 5, Platform.class);
+        int yMin = 600;
         touchingCounter++;
         
+        for (Actor actor: touchings){
+            if (actor.getY() - actor.getImage().getHeight() / 2 < yMin) {
+                yMin = actor.getY() - actor.getImage().getHeight() / 2;
+            }
+        }
+        
         // Collision
-        if(a != null) {
+        if(!touchings.isEmpty()) {
             acceleration = 0;
             velocity = 0;
+            setLocation(getX(), yMin - this.getImage().getHeight() / 2);
         }
         else {
             touchingCounter = 0;
