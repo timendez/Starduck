@@ -22,12 +22,12 @@ public class Giraffe extends Actor
        try {
            if(!ignore && getWorld().getObjects(StarDuck.class).get(0).getX() >= getX() - 100 && numTimes < 4) {
                ignore = true;
-               ((MyWorld)getWorld()).beginDialog();
+               ((Scene)getWorld()).beginDialog();
                numTimes++;
            }
 
            if(ignore && count++ == WAIT_TIME) {
-               ((MyWorld)getWorld()).dismissDialog();
+               ((Scene)getWorld()).dismissDialog();
                ignore = false;
                count = 0;
                

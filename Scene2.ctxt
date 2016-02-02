@@ -8,4 +8,6 @@ comment2.params=
 comment2.target=void\ beginDialog()
 comment3.params=
 comment3.target=void\ dismissDialog()
-numComments=4
+comment4.params=starduck
+comment4.target=void\ nextScene(StarDuck)
+numComments=5

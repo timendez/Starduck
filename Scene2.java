@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Scene2 extends World
+public class Scene2 extends World implements Scene
 {
     private Text text = new Text("starText3.png");
     private StarDuck starduck;
@@ -37,5 +37,9 @@ public class Scene2 extends World
     
     public void dismissDialog() {
         removeObject(text);
+    }
+    
+    public void nextScene(StarDuck starduck) {
+        Greenfoot.setWorld(new Scene3(starduck));
     }
 }

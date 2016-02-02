@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Scene
+comment0.text=\n\ Write\ a\ description\ of\ class\ Scene\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=starduck
+comment1.target=void\ nextScene(StarDuck)
+comment2.params=
+comment2.target=void\ beginDialog()
+comment3.params=
+comment3.target=void\ dismissDialog()
+numComments=4

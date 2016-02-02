@@ -47,8 +47,6 @@ public class SPower extends Actor
                ignore = false;
                ((StarDuck)getWorld().getObjects(StarDuck.class).get(0)).setAdvance(true);
         }
-        
-        
     }
     
      private void collisionDetection() {
