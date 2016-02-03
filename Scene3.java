@@ -23,7 +23,8 @@ public class Scene3 extends World implements Scene
     public Scene3(StarDuck starduck)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        super(600, 400, 1);
+        setBackground("background.png");
         this.starduck = starduck;
 
         Platform platform = new Platform();
