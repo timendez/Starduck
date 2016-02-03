@@ -39,8 +39,8 @@ public class StarBall extends Actor
         
         setImage(images[count]);
         
-        checkAtEdge();
         collisionDetection();
+        checkAtEdge();
     }  
     
     public StarBall(boolean isRight) {
@@ -49,12 +49,14 @@ public class StarBall extends Actor
     }
     
     public void checkAtEdge(){
-        boolean ballAtEdge = this.isAtEdge();
-        
-        if(ballAtEdge) {
-             getWorld().removeObject(this);
+        // Making sure that the starball (this) hasn't been removed by a zombie hit
+        if(getWorld() != null) {
+            boolean ballAtEdge = this.isAtEdge();
+            
+            if(ballAtEdge) {
+                 getWorld().removeObject(this);
+            }
         }
-        
     }
     
     private void collisionDetection() {
