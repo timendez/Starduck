@@ -41,4 +41,7 @@ public class Scene1 extends World implements Scene
     public void nextScene(StarDuck starduck) {
         Greenfoot.setWorld(new Scene2(starduck));
     }
+    
+    public void zombieDied() {
+    }
 }

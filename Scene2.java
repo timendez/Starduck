@@ -27,7 +27,7 @@ public class Scene2 extends World implements Scene
         addObject(starduck, 0, starduck.getY());
         
         addObject(new OscillatingPlatform(0,300,1), 530, 600); 
-        addObject(new SPower(), 530, 70); 
+        addObject(new SPower(), 530, 300); // spower y = 70 
         
         this.starduck = starduck;
     }
@@ -42,5 +42,9 @@ public class Scene2 extends World implements Scene
     
     public void nextScene(StarDuck starduck) {
         Greenfoot.setWorld(new Scene3(starduck));
+    }
+    
+    public void zombieDied(){
+        
     }
 }

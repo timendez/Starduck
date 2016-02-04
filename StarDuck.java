@@ -7,7 +7,7 @@ import java.util.List;  // (World, Actor, GreenfootImage, Greenfoot and MouseInf
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class StarDuck extends Actor
+public class StarDuck extends Character
 {
     // CONSTS
     private final int TRANSPARENCY = 60;
@@ -36,14 +36,8 @@ public class StarDuck extends Actor
     private boolean hasSpower = false;
     private boolean hasCape = false;
     
-    // Gravity
-    private double acceleration = 9.8; //m/s^2
-    private double velocity = 0; //m/s
-    private final double TIME_INTERVAL = .15;
-    private boolean resting = false;
-    private int touchingCounter = 0;
-    
     public StarDuck() {
+        super();
         walking[0] = "walking1.png";
         walking[1] = "walking2.png";
         walking[2] = "walking3.png";
@@ -55,6 +49,7 @@ public class StarDuck extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() {
+        super.act();
         if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) {
             setLocation(getX() - 3, getY());
             
@@ -88,7 +83,7 @@ public class StarDuck extends Actor
         }
         
         if(Greenfoot.isKeyDown("space") && velocity == 0 && hasSpower) {
-            velocity = -35;
+            velocity = -50;
             
             walkIdx = walkIdx == 3 ? 0 : walkIdx + 1;
             
@@ -108,43 +103,11 @@ public class StarDuck extends Actor
         if(recentlyHit)
             getImage().setTransparency(TRANSPARENCY);
         else
-            getImage().setTransparency(OPAQUE);
-
-        applyGravity();
-        collisionDetection(); 
+            getImage().setTransparency(OPAQUE); 
+            
+        detectZombie();
     }
-    
-    private void applyGravity() {
-        increaseVelocity();
-        setLocation(getX(), (int)(getY() + ((velocity * TIME_INTERVAL) + (.5 * acceleration * (TIME_INTERVAL*TIME_INTERVAL)))));
-    }
-    
-    private void increaseVelocity() {
-        velocity = velocity + acceleration * TIME_INTERVAL;
-    }
-    
-    private void collisionDetection() {
-        List<Platform> touchings = this.getObjectsAtOffset(0, this.getImage().getHeight() / 2 + 5, Platform.class);
-        int yMin = 600;
-        touchingCounter++;
-        
-        for (Actor actor: touchings){
-            if (actor.getY() - actor.getImage().getHeight() / 2 < yMin) {
-                yMin = actor.getY() - actor.getImage().getHeight() / 2;
-            }
-        }
-        
-        // Collision
-        if(!touchings.isEmpty()) {
-            acceleration = 0;
-            velocity = 0;
-            setLocation(getX(), yMin - this.getImage().getHeight() / 2);
-        }
-        else {
-            touchingCounter = 0;
-            acceleration = 9.8;
-        }
-    }
+   
     
     public void setAdvance(boolean allow) {
         allowAdvance = allow;
@@ -177,7 +140,6 @@ public class StarDuck extends Actor
    
    public void decreaseHealth(int byThisMany) {
        if(!recentlyHit) {
-           System.out.println("Hello");
            health -= byThisMany;
            recentlyHit = true;
            
@@ -188,5 +150,13 @@ public class StarDuck extends Actor
    
    private void killSelf() {
        Greenfoot.setWorld(new GameOver());
+   }
+   
+   private void detectZombie() { 
+       Actor zombie = this.getOneIntersectingObject(Zombie.class);
+       
+       if(zombie != null){
+           decreaseHealth(1);
+       }
    }
 }

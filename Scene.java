@@ -8,4 +8,5 @@ public interface Scene {
    public void nextScene(StarDuck starduck);
    public void beginDialog();
    public void dismissDialog();
+   public void zombieDied();
 }

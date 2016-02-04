@@ -1,22 +1,30 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Zombie here.
+ * Write a description of class Scene5Zombie here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Zombie extends Character
+public class Scene5Zombie extends Character
 {
     private String[] walking = {"zombiewalk1.png", "zombiewalk2.png", "zombiewalk3.png", "zombiewalk4.png"};
     private int walkIdx = 0;
     private int health = 2;
-    private Scene currentScene; 
+    private int kills = 0;
+    
+    // Gravity
+    private double acceleration = 9.8; //m/s^2
+    private double velocity = 0; //m/s
+    private final double TIME_INTERVAL = .15;
+    private boolean resting = false;
+    private int touchingCounter = 0;
     /**
-     * Act - do whatever the Zombie wants to do. This method is called whenever
+     * Act - do whatever the Scene4Zombie wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() {
+        super.act();
         walkIdx = walkIdx == 3 ? 0 : walkIdx + 1;
         setImage(walking[walkIdx]);
         
@@ -27,23 +35,16 @@ public class Zombie extends Character
             setLocation(getX() + 1, getY());
             getImage().mirrorHorizontally();
         }
-       
-    }
-    
-    public Zombie(Scene currentScene){
-        super();
-        this.currentScene = currentScene;
     }
     
     public void takeDamage(int damage) {
         health -= damage;
-        if(health <= 0){
+        if(health <= 0)
             killSelf();
-            currentScene.zombieDied();
-        }
     }
     
     private void killSelf() {
+        ((Scene4)getWorld()).zombieDied();
         getWorld().removeObject(this);
     }
     
