@@ -77,7 +77,6 @@ public class StarDuck extends Character
         
         if(coolDown) {
             if (count-- == 0) {
-                System.out.println("here");
                 coolDown = false;
             } 
         }

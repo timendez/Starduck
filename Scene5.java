@@ -44,6 +44,7 @@ public class Scene5 extends World implements Scene
         
         addObject(starduck, 0, starduck.getY()); 
         addZombie(true);
+        starduck.setAdvance(true);//TESTING PURPOSES ONLY
     }
     
     public void beginDialog() {
@@ -56,7 +57,7 @@ public class Scene5 extends World implements Scene
     }
 
     public void nextScene(StarDuck starduck) {
-        Greenfoot.setWorld(new Scene5(starduck));
+        Greenfoot.setWorld(new Scene6(starduck));
     }
     
     private void addZombie(boolean fromRight) {

@@ -11,12 +11,15 @@ public class Zombie extends Character
     private String[] walking = {"zombiewalk1.png", "zombiewalk2.png", "zombiewalk3.png", "zombiewalk4.png"};
     private int walkIdx = 0;
     private int health = 2;
-    private Scene currentScene; 
+    private Scene currentScene;
+    
     /**
      * Act - do whatever the Zombie wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() {
+        super.act();
+        
         walkIdx = walkIdx == 3 ? 0 : walkIdx + 1;
         setImage(walking[walkIdx]);
         
