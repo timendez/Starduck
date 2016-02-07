@@ -10,7 +10,7 @@ public class Scene2 extends World implements Scene
 {
     private Text text = new Text("starText3.png");
     private StarDuck starduck;
-    
+
     /**
      * Constructor for objects of class Scene2.
      * 
