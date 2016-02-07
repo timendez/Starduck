@@ -60,16 +60,15 @@ public class Scene6 extends World implements Scene
     }
     
     private void addZombie() {
-        System.out.println("ADDED");
         Random ran = new Random();
         int x = ran.nextInt(3);
         
         if(x == 0)
-            addObject(new Zombie(this), 150, 120);
+            addObject(new Zombie(this), 0, 0);
         else if(x == 1)
-            addObject(new Zombie(this), 300, 130);
+            addObject(new Zombie(this), 300, 0);
         else
-            addObject(new Zombie(this), 450, 140);
+            addObject(new Zombie(this), 600, 0);
 
         numZombiesLeft--;
     }
