@@ -12,9 +12,12 @@ public class Scene3 extends World implements Scene
 {
     private StarDuck starduck;
     private Text text = new Text();
-    private String[] texts = {"scene3_1.png"};
+    private String[] texts = {"giraffeText3.png", "giraffeText4.png"};
     private int textsIdx = 0;
     private boolean zombieSpawned = false;
+    private GreenfootSound voice;
+    private String[] audio = {"audio/effarig_3.wav", "audio/effarig_4.wav"};
+
     
     /**
      * Constructor for objects of class Scene3.
@@ -36,12 +39,16 @@ public class Scene3 extends World implements Scene
     }
     
     public void beginDialog() {
-    //    addObject(text, 200, 50);
-    //    text.setImage(texts[textsIdx++]);
+        if(textsIdx <= 1) {
+            addObject(text, 300, 200);
+            voice = new GreenfootSound(audio[textsIdx]);
+            voice.play();
+            text.setImage(texts[textsIdx++]);
+        }
     }
 
     public void dismissDialog() {
-    //    removeObject(text);
+        removeObject(text);
         if(!zombieSpawned)
             addZombie();
     }

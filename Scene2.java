@@ -10,6 +10,7 @@ public class Scene2 extends World implements Scene
 {
     private Text text = new Text("starText3.png");
     private StarDuck starduck;
+    private GreenfootSound voice = new GreenfootSound("audio/starduck_3.wav");
 
     /**
      * Constructor for objects of class Scene2.
@@ -33,11 +34,13 @@ public class Scene2 extends World implements Scene
     }
     
     public void beginDialog() {
+        voice.play();
         addObject(text, 200, 50);
     }
     
     public void dismissDialog() {
         removeObject(text);
+        voice.stop();
     }
     
     public void nextScene(StarDuck starduck) {

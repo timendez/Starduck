@@ -17,7 +17,7 @@ public class StarDuck extends Character
     private int walkIdx = 0;
     
     // Health
-    private int health = 3;
+    private int health = 5;
     private boolean recentlyHit = false;
     private int hitCoolDown = 40;
 
@@ -29,7 +29,7 @@ public class StarDuck extends Character
     
     // Shooting Time
     private int count = 0;
-    public int WAIT_TIME = 50;
+    public int SHOOT_COOLDOWN = 40;
     private boolean coolDown = false;
 
     // Upgrades
@@ -71,7 +71,7 @@ public class StarDuck extends Character
         
         if(Greenfoot.isKeyDown("b") && hasSpower && !coolDown) {
             shootBall();
-            count = WAIT_TIME;
+            count = SHOOT_COOLDOWN;
             coolDown = true;
         }
         

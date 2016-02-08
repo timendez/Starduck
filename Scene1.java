@@ -11,6 +11,9 @@ public class Scene1 extends World implements Scene
     private Text text = new Text();
     private String[] texts = {"giraffeText1.png", "starText1.png", "giraffeText2.png", "starText2.png"};
     private int textsIdx = 0;
+    public GreenfootSound music = new GreenfootSound("audio/Rhinoceros.mp3");
+    private GreenfootSound voice;
+    private String[] audio = {"audio/effarig_1.wav", "audio/starduck_1.wav", "audio/effarig_2.wav", "audio/starduck_2.wav"};
 
     /**
      * Constructor for objects of class MyWorld.
@@ -27,15 +30,21 @@ public class Scene1 extends World implements Scene
         rocket.animate();
         addObject(new Platform(), 300, 400);
         addObject(new Giraffe(), 500, 340);
+        
+        music.setVolume(40);
+        music.playLoop();
     }
     
     public void beginDialog() {
+        voice = new GreenfootSound(audio[textsIdx]);
+        voice.play();
         addObject(text, 350, 200);
         text.setImage(texts[textsIdx++]);
     }
     
     public void dismissDialog() {
         removeObject(text);
+        voice.stop();
     }
     
     public void nextScene(StarDuck starduck) {

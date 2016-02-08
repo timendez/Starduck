@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.Random;
 
 /**
  * Write a description of class Scene5 here.
@@ -13,7 +14,7 @@ public class Scene5 extends World implements Scene
     private String[] texts = {"scene4_1.png"};
     private int textsIdx = 0;
     private int kills = 0;
-    private int numZombiesLeft = 20; 
+    private int numZombiesLeft = 6; 
     
     /**
      * Constructor for objects of class Scene3.
@@ -44,7 +45,6 @@ public class Scene5 extends World implements Scene
         
         addObject(starduck, 0, starduck.getY()); 
         addZombie(true);
-        starduck.setAdvance(true);//TESTING PURPOSES ONLY
     }
     
     public void beginDialog() {
@@ -62,7 +62,7 @@ public class Scene5 extends World implements Scene
     
     private void addZombie(boolean fromRight) {
         if (fromRight) { 
-            if(numZombiesLeft % 5 == 0) {
+            if(numZombiesLeft % 2 == 0) {
                 addObject(new Zombie(this), 600, 150);
             }
             else {
@@ -70,7 +70,7 @@ public class Scene5 extends World implements Scene
             }
         }
         else {
-            if(numZombiesLeft % 5 == 0) {
+            if(numZombiesLeft % 2 == 0) {
                 addObject(new Zombie(this), 0, 150);
             }
             else {
@@ -82,15 +82,20 @@ public class Scene5 extends World implements Scene
     }
     
     public void zombieDied() {
+       Random ran = new Random();
+       int x = ran.nextInt(1);
+       
        kills++;
-       if(kills < 10) {
-           if (kills % 20 == 0) {
-               addZombie(true);
-               addZombie(true);
+       if(kills < 6) {
+           if (kills % 2 == 0) {
+               if(x == 0)
+                  addZombie(true);
+               else
+                  addZombie(false);
            }
            else {
-               addZombie(false);
                addZombie(true);
+               addZombie(false);
            }
        }
        else {

@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Giraffe extends Actor
 {
-    public int WAIT_TIME = 5;//300; // 5 seconds
+    public int WAIT_TIME = 300; // 5 seconds
     private int count = 0;
     private int numTimes = 0;
     
