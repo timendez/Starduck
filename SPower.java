@@ -38,15 +38,6 @@ public class SPower extends Actor
             setImage(images[count]);
         
         collisionDetection();
-        
-        if(ignore)
-            ((StarDuck)getWorld().getObjects(StarDuck.class).get(0)).setAdvance(false);
-        
-        if(ignore && waitCount++ == WAIT_TIME) {
-               ((Scene2)getWorld()).dismissDialog();
-               ignore = false;
-               ((StarDuck)getWorld().getObjects(StarDuck.class).get(0)).setAdvance(true);
-        }
     }
     
      private void collisionDetection() {
