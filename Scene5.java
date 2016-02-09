@@ -14,7 +14,7 @@ public class Scene5 extends World implements Scene
     private String[] texts = {"scene4_1.png"};
     private int textsIdx = 0;
     private int kills = 0;
-    private int numZombiesLeft = 6; 
+    private int numZombiesLeft = 1; 
     
     /**
      * Constructor for objects of class Scene3.

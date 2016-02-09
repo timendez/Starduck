@@ -17,7 +17,7 @@ public class StarDuck extends Character
     private int walkIdx = 0;
     
     // Health
-    private int health = 5;
+    private int health = 50;
     private boolean recentlyHit = false;
     private int hitCoolDown = 40;
 
@@ -81,12 +81,24 @@ public class StarDuck extends Character
             } 
         }
         
-        if(Greenfoot.isKeyDown("space") && velocity == 0 && hasSpower) {
-            velocity = -50;
+        if(Greenfoot.isKeyDown("space") && (hasCape || velocity == 0) && hasSpower) {
+
+            if (hasCape){
+                velocity = -40;
+            }
+            else{
+                velocity = -50;
+            }
             
             walkIdx = walkIdx == 3 ? 0 : walkIdx + 1;
             
-            setImage(walking[walkIdx]);
+            if(isRight) {
+                setImage(walking[walkIdx]);
+            }
+            else{
+                setImage(walking[walkIdx]);
+                getImage().mirrorHorizontally();
+            }
         }
         
 
@@ -126,6 +138,15 @@ public class StarDuck extends Character
         walking[1] = "swalking2.png";
         walking[2] = "swalking3.png";
         walking[3] = "swalking4.png";
+   }
+   
+   public void setCapePower(boolean has){
+       hasCape = has;
+       
+       walking[0] = "cwalking1.png";
+       walking[1] = "cwalking2.png";
+       walking[2] = "cwalking3.png";
+       walking[3] = "cwalking4.png";        
    }
 
    public boolean getIsRight(){

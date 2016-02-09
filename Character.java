@@ -35,6 +35,11 @@ public class Character extends Actor
     }
     
     private void collisionDetection() {
+        yDirectionCollisionDetection();
+        xDirectionCollisionDetection();
+    }
+    
+    private void yDirectionCollisionDetection(){
         List<Platform> touchings = this.getObjectsAtOffset(0, this.getImage().getHeight() / 2 + 5, Platform.class);
         int yMin = 600;
         touchingCounter++;
@@ -55,5 +60,31 @@ public class Character extends Actor
             touchingCounter = 0;
             acceleration = 9.8;
         }
+    }
+    
+    private void xDirectionCollisionDetection() {
+        List<Wall> wallTouchings = this.getIntersectingObjects(Wall.class);
+        
+        int xMin = -getImage().getWidth(), xMax = 600 + getImage().getWidth(); 
+        int myMin = getX() - getImage().getWidth() / 2, myMax = getX() + getImage().getWidth() / 2; 
+        
+        for (Actor wall: wallTouchings) {
+            if(wall.getX() < this.getX()){ 
+                xMin = wall.getX() + wall.getImage().getWidth() / 2;
+            }
+            else if (wall.getX() > this.getX()){
+                xMax = wall.getX() - wall.getImage().getWidth() / 2;
+            }
+        }
+        
+        if(myMin < xMin) {
+            // left side of character touching right side of left wall
+            setLocation(xMin + getImage().getWidth() / 2 + 2, getY());
+        }
+        else if (myMax > xMax) {
+            // right side of character touching left side of right wall
+            setLocation(xMax - getImage().getWidth() / 2 - 2, getY());
+        }
+        
     }
 }

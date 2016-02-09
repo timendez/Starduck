@@ -1,13 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.Random;
-
 /**
- * Write a description of class Scene5 here.
+ * Write a description of class Scene7 here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Scene6 extends World implements Scene
+public class Scene7 extends World implements Scene
 {
     private StarDuck starduck;
     private Text text = new Text();
@@ -20,7 +19,7 @@ public class Scene6 extends World implements Scene
      * Constructor for objects of class Scene3.
      * 
      */
-    public Scene6(StarDuck starduck)
+    public Scene7(StarDuck starduck)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
@@ -35,15 +34,12 @@ public class Scene6 extends World implements Scene
         Platform platform = new Platform();
         addObject(platform, 300, 400);
         
-        // Oscillators
-        addObject(new OscillatingPlatform(0, 300, 1), 150, 600);
-        addObject(new OscillatingPlatform(0, 300, 2), 300, 300);
-        addObject(new OscillatingPlatform(0, 300, 1), 450, 600);
+        Platform sideWall = new Wall();
+        sideWall.getImage().scale(25, 350);
+        addObject(sideWall, 575, 250);
         
-        // Baddies
-        addObject(new Zombie(this), 400, 340);
-        addObject(new Zombie(this), 500, 340);
-        addObject(new Zombie(this), 600, 340);
+        // Cape 
+        addObject(new Cape(), 500, 300); 
     }
     
     public void beginDialog() {
