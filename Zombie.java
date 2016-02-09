@@ -12,6 +12,7 @@ public class Zombie extends Character
     private int walkIdx = 0;
     private int health = 2;
     private Scene currentScene;
+    private boolean goingLeft = true;
     
     /**
      * Act - do whatever the Zombie wants to do. This method is called whenever
@@ -23,17 +24,36 @@ public class Zombie extends Character
         walkIdx = walkIdx == 3 ? 0 : walkIdx + 1;
         setImage(walking[walkIdx]);
         
-        if (((StarDuck)getWorld().getObjects(StarDuck.class).get(0)).getX() < getX()) {
-            setLocation(getX() - 1, getY());
-        }   
-        else {
-            setLocation(getX() + 1, getY());
-            getImage().mirrorHorizontally();
+        if(currentScene.toString().substring(0, 6).equals("Scene8")) {
+            if(goingLeft) {
+                if(getY() > 300 && getX() - 2 <= 0)
+                    setLocation(600, 50);
+                else if(getX() - 2 <= 0)
+                    goingLeft = false;
+                else
+                    setLocation(getX() - 2, getY());
+            }
+            else {
+                if(getX() + 2 >= 600)
+                    goingLeft = true;
+                else {
+                    setLocation(getX() + 2, getY());
+                    getImage().mirrorHorizontally();
+                }
+            }
         }
-       
+        else {
+            if (((StarDuck)getWorld().getObjects(StarDuck.class).get(0)).getX() < getX()) {
+                setLocation(getX() - 1, getY());
+            }   
+            else {
+                setLocation(getX() + 1, getY());
+                getImage().mirrorHorizontally();
+            }
+        }
     }
     
-    public Zombie(Scene currentScene){
+    public Zombie(Scene currentScene) {
         super();
         this.currentScene = currentScene;
     }
@@ -47,6 +67,8 @@ public class Zombie extends Character
     }
     
     private void killSelf() {
+        GreenfootSound dyingSound = new GreenfootSound("audio/zombieDeath.wav");
+        dyingSound.play();
         getWorld().removeObject(this);
     }
     

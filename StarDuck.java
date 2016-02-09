@@ -17,7 +17,7 @@ public class StarDuck extends Character
     private int walkIdx = 0;
     
     // Health
-    private int health = 50;
+    private int health = 10;
     private boolean recentlyHit = false;
     private int hitCoolDown = 40;
 
@@ -154,6 +154,8 @@ public class StarDuck extends Character
    }
 
    public void shootBall() {
+       GreenfootSound shotSound = new GreenfootSound("audio/laser.wav");
+       shotSound.play();
        StarBall sBall = new StarBall(isRight);
        getWorld().addObject(sBall, getX(), getY());
    }

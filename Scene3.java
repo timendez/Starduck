@@ -29,6 +29,7 @@ public class Scene3 extends World implements Scene
         super(600, 400, 1);
         setBackground("background.png");
         this.starduck = starduck;
+        starduck.setAdvance(false);
 
         Platform platform = new Platform();
         addObject(platform, 300, 400);
@@ -63,5 +64,6 @@ public class Scene3 extends World implements Scene
     }
     
     public void zombieDied(){
+        starduck.setAdvance(true);
     }
 }

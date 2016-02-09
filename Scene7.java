@@ -43,16 +43,13 @@ public class Scene7 extends World implements Scene
     }
     
     public void beginDialog() {
-    //    addObject(text, 200, 50);
-    //    text.setImage(texts[textsIdx++]);
     }
 
     public void dismissDialog() {
-    //    removeObject(text);
     }
 
     public void nextScene(StarDuck starduck) {
-        Greenfoot.setWorld(new Scene7(starduck));
+        Greenfoot.setWorld(new Scene8(starduck));
     }
     
     private void addZombie() {
