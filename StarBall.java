@@ -61,7 +61,7 @@ public class StarBall extends Actor
     
     private void collisionDetection() {
         Actor zombie = this.getOneIntersectingObject(Zombie.class);
-        Actor zombie4 = this.getOneIntersectingObject(Scene4Zombie.class);
+
         // Collision
         if(zombie != null) {
             ((Zombie)zombie).takeDamage(1);
