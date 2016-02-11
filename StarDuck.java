@@ -173,7 +173,7 @@ public class StarDuck extends Character
    private void killSelf() {
        Greenfoot.setWorld(new GameOver());
    }
-   
+
    private void detectZombie() { 
        Actor zombie = this.getOneIntersectingObject(Zombie.class);
        
