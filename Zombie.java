@@ -13,7 +13,13 @@ public class Zombie extends Character
     private int health = 2;
     private Scene currentScene;
     private boolean goingLeft = true;
-    
+    private boolean justWalkForABit = false;
+    private boolean backAndForthSpaz = false;
+    private final int LITTLEBIT_DEFAULT = 90;
+    private int littleBit = LITTLEBIT_DEFAULT;
+    private int[] backAndForth = new int[3];
+    private int backAndForthIdx = 0;
+
     /**
      * Act - do whatever the Zombie wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -43,14 +49,45 @@ public class Zombie extends Character
             }
         }
         else {
-            if (((StarDuck)getWorld().getObjects(StarDuck.class).get(0)).getX() < getX()) {
-                setLocation(getX() - 1, getY());
-            }   
+            // Zombies collided with each other and need to go other direction
+            if(justWalkForABit) {
+                if(goingLeft && getX() - 1 >= 1)
+                    setLocation(getX() - 1, getY());
+                else if(getX() + 1 < getWorld().getWidth()) {
+                    setLocation(getX() + 1, getY());
+                    getImage().mirrorHorizontally();
+                }
+                    
+                if(littleBit-- <= 0) {
+                    justWalkForABit = false;
+                    littleBit = LITTLEBIT_DEFAULT;
+                }
+            }
             else {
-                setLocation(getX() + 1, getY());
-                getImage().mirrorHorizontally();
+                if(backAndForthIdx == 3) {
+                    backAndForth = new int[3];
+                    backAndForthIdx = 0;
+                }
+
+                if(((StarDuck)getWorld().getObjects(StarDuck.class).get(0)).getX() < getX()) {
+                    backAndForth[backAndForthIdx++] = 0;
+                    setLocation(getX() - 1, getY());
+                    goingLeft = true;
+                }
+                else {
+                    backAndForth[backAndForthIdx++] = 1;
+                    setLocation(getX() + 1, getY());
+                    getImage().mirrorHorizontally();
+                    goingLeft = false ;
+                }
+                
+                if(backAndForth[0] == backAndForth[2] && backAndForth[1] != backAndForth[0]) {
+                    justWalkForABit = true;
+                }
             }
         }
+        
+        otherZombieCollision();
     }
     
     public Zombie(Scene currentScene) {
@@ -72,9 +109,26 @@ public class Zombie extends Character
         getWorld().removeObject(this);
     }
     
+    private void otherZombieCollision() {
+        for(Zombie zombie : getWorld().getObjects(Zombie.class)) {
+            if(!zombie.equals(this) && touch(zombie)) {
+                turnAwayFromZombieForABit(zombie);
+                zombie.turnAwayFromZombieForABit(this);
+            }
+        }
+    }
+    
+    public void turnAwayFromZombieForABit(Zombie zombie) {
+        if(zombie.getX() > getX())
+            goingLeft = true;
+        else
+            goingLeft = false;
+            
+        justWalkForABit = true;
+    }
+    
     /* Pixel perfect detection taken from http://www.greenfoot.org/scenarios/9908 */
-    public boolean touch(Actor a_big)
-    {
+    private boolean touch(Actor a_big) {
         Actor a_small;
         if(getImage().getWidth()*getImage().getHeight()>a_big.getImage().getHeight()*a_big.getImage().getWidth())
         {
