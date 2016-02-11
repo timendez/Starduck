@@ -19,6 +19,7 @@ public class Scene3 extends World implements Scene
     private String[] audio = {"audio/effarig_3.wav", "audio/effarig_4.wav"};
 
     
+    
     /**
      * Constructor for objects of class Scene3.
      * 
@@ -46,6 +47,7 @@ public class Scene3 extends World implements Scene
             voice.play();
             text.setImage(texts[textsIdx++]);
         }
+
     }
 
     public void dismissDialog() {
