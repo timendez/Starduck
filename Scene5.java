@@ -86,7 +86,7 @@ public class Scene5 extends World implements Scene
        int x = ran.nextInt(1);
        
        kills++;
-       if(kills < 6) {
+       if(kills < 11) {
            if (kills % 2 == 0) {
                if(x == 0)
                   addZombie(true);
