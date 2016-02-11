@@ -15,6 +15,7 @@ public class Scene6 extends World implements Scene
     private int textsIdx = 0;
     private int kills = 0;
     private int numZombiesLeft = 6; 
+    private Text healthText = new Text();
     
     /**
      * Constructor for objects of class Scene3.
@@ -44,6 +45,9 @@ public class Scene6 extends World implements Scene
         addObject(new Zombie(this), 400, 340);
         addObject(new Zombie(this), 500, 340);
         addObject(new Zombie(this), 600, 340);
+        
+        healthHUD(starduck.getHealth());
+        addObject(healthText, 75, 20);
     }
     
     public void beginDialog() {
@@ -82,5 +86,9 @@ public class Scene6 extends World implements Scene
            starduck.setAdvance(true);
        }
        
+    }
+    
+    public void healthHUD(int health) {
+        healthText.setImage(health + ".png");
     }
 }

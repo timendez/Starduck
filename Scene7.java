@@ -13,7 +13,8 @@ public class Scene7 extends World implements Scene
     private String[] texts = {"scene4_1.png"};
     private int textsIdx = 0;
     private int kills = 0;
-    private int numZombiesLeft = 6; 
+    private int numZombiesLeft = 6;
+    private Text healthText = new Text();
     
     /**
      * Constructor for objects of class Scene3.
@@ -39,7 +40,10 @@ public class Scene7 extends World implements Scene
         addObject(sideWall, 575, 250);
         
         // Cape 
-        addObject(new Cape(), 500, 300); 
+        addObject(new Cape(), 500, 300);
+        
+        healthHUD(starduck.getHealth());
+        addObject(healthText, 75, 20);
     }
     
     public void beginDialog() {
@@ -75,5 +79,9 @@ public class Scene7 extends World implements Scene
            starduck.setAdvance(true);
        }
        
+    }
+    
+    public void healthHUD(int health) {
+        healthText.setImage(health + ".png");
     }
 }

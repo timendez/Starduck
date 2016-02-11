@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=Scene6
-comment0.text=\n\ Write\ a\ description\ of\ class\ Scene5\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Scene5\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=starduck
 comment1.target=Scene6(StarDuck)
-comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Scene3.\n\ \n
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Scene3.\r\n\ \r\n
 comment2.params=
 comment2.target=void\ beginDialog()
 comment3.params=
@@ -14,4 +14,6 @@ comment5.params=
 comment5.target=void\ addZombie()
 comment6.params=
 comment6.target=void\ zombieDied()
-numComments=7
+comment7.params=health
+comment7.target=void\ healthHUD(int)
+numComments=8

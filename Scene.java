@@ -9,4 +9,5 @@ public interface Scene {
    public void beginDialog();
    public void dismissDialog();
    public void zombieDied();
+   public void healthHUD(int health);
 }
