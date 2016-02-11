@@ -12,6 +12,7 @@ public class Scene2 extends World implements Scene
     private Text tip = new Text("spacebarTip.png");
     private StarDuck starduck;
     private GreenfootSound voice = new GreenfootSound("audio/starduck_3.wav");
+    private Text healthText = new Text();
 
     /**
      * Constructor for objects of class Scene2.
@@ -33,6 +34,8 @@ public class Scene2 extends World implements Scene
         addObject(new SPower(), 530, 70); // spower y = 70 
         
         this.starduck = starduck;
+        healthHUD(starduck.getHealth());
+        addObject(healthText, 75, 20);
     }
     
     public void beginDialog() {
@@ -53,5 +56,9 @@ public class Scene2 extends World implements Scene
     
     public void zombieDied(){
         
+    }
+    
+    public void healthHUD(int health) {
+        healthText.setImage(health + ".png");
     }
 }

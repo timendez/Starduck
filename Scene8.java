@@ -10,6 +10,7 @@ import java.util.Random;
 public class Scene8 extends World implements Scene {
     private StarDuck starduck;
     private int kills = 0;
+    private Text healthText = new Text();
 
     /**
      * Constructor for objects of class Scene8.
@@ -43,6 +44,9 @@ public class Scene8 extends World implements Scene {
         addObject(new Zombie(this), 4, 200);
         addObject(new Zombie(this), 350, 338);
         addObject(new Zombie(this), 125, 200);
+        
+        healthHUD(starduck.getHealth());
+        addObject(healthText, 75, 20);
     }
         
     public void beginDialog() {
@@ -70,5 +74,9 @@ public class Scene8 extends World implements Scene {
        else if (kills == 10) {
            starduck.setAdvance(true);
        }
+    }
+    
+    public void healthHUD(int health) {
+        healthText.setImage(health + ".png");
     }
 }

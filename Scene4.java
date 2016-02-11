@@ -13,6 +13,7 @@ public class Scene4 extends World implements Scene
     private String[] texts = {"scene4_1.png"};
     private int textsIdx = 0;
     private int kills = 0;
+    private Text healthText = new Text();
     
     /**
      * Constructor for objects of class Scene3.
@@ -31,6 +32,9 @@ public class Scene4 extends World implements Scene
         
         addObject(starduck, 0, starduck.getY()); 
         addZombie(true);
+        
+        healthHUD(starduck.getHealth());
+        addObject(healthText, 75, 20);
     }
     
     public void beginDialog() {
@@ -69,5 +73,9 @@ public class Scene4 extends World implements Scene
            starduck.setAdvance(true);
        }
        
+    }
+    
+    public void healthHUD(int health) {
+        healthText.setImage(health + ".png");
     }
 }

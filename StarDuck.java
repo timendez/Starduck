@@ -19,7 +19,8 @@ public class StarDuck extends Character
     // Health
     private int health = 10;
     private boolean recentlyHit = false;
-    private int hitCoolDown = 40;
+    private final int HIT_COOLDOWN = 50;
+    private int hitCoolDown = HIT_COOLDOWN;
 
     // Level advancement
     private boolean allowAdvance = false;
@@ -108,7 +109,7 @@ public class StarDuck extends Character
         
         if(recentlyHit && hitCoolDown-- == 0) {
             recentlyHit = false;
-            hitCoolDown = 40;
+            hitCoolDown = HIT_COOLDOWN;
         }
         
         if(recentlyHit)
@@ -167,6 +168,8 @@ public class StarDuck extends Character
            
            if(health <= 0)
                killSelf();
+           else
+               ((Scene)getWorld()).healthHUD(health);
         }
    }
    
@@ -180,5 +183,9 @@ public class StarDuck extends Character
        if(zombie != null){
            decreaseHealth(1);
        }
+   }
+   
+   public int getHealth() {
+       return health;
    }
 }

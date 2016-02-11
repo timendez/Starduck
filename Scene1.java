@@ -14,7 +14,9 @@ public class Scene1 extends World implements Scene
     public GreenfootSound music = new GreenfootSound("audio/Rhinoceros.mp3");
     private GreenfootSound voice;
     private String[] audio = {"audio/effarig_1.wav", "audio/starduck_1.wav", "audio/effarig_2.wav", "audio/starduck_2.wav"};
+    private Text healthText = new Text();
     private Text tip = new Text("dialogTip.png");
+    
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -33,14 +35,16 @@ public class Scene1 extends World implements Scene
         
         music.setVolume(40);
         music.playLoop();
+        healthHUD(10);
+        addObject(healthText, 75, 20);
     }
     
     public void beginDialog() {
+        addObject(tip, 190, 390);
         voice = new GreenfootSound(audio[textsIdx]);
         voice.play();
         addObject(text, 350, 200);
         text.setImage(texts[textsIdx++]);
-        addObject(tip, 190, 390);
     }
     
     public void dismissDialog() {
@@ -53,5 +57,9 @@ public class Scene1 extends World implements Scene
     }
     
     public void zombieDied() {
+    }
+    
+    public void healthHUD(int health) {
+        healthText.setImage(health + ".png");
     }
 }

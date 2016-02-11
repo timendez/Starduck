@@ -17,8 +17,8 @@ public class Scene3 extends World implements Scene
     private boolean zombieSpawned = false;
     private GreenfootSound voice;
     private String[] audio = {"audio/effarig_3.wav", "audio/effarig_4.wav"};
+    private Text healthText = new Text();
 
-    
     
     /**
      * Constructor for objects of class Scene3.
@@ -38,6 +38,9 @@ public class Scene3 extends World implements Scene
         addObject(starduck, 0, starduck.getY()); 
 
         addObject(new Giraffe(), 300, 340);
+        
+        healthHUD(starduck.getHealth());
+        addObject(healthText, 75, 20);
     }
     
     public void beginDialog() {
@@ -47,7 +50,6 @@ public class Scene3 extends World implements Scene
             voice.play();
             text.setImage(texts[textsIdx++]);
         }
-
     }
 
     public void dismissDialog() {
@@ -67,5 +69,9 @@ public class Scene3 extends World implements Scene
     
     public void zombieDied(){
         starduck.setAdvance(true);
+    }
+    
+    public void healthHUD(int health) {
+        healthText.setImage(health + ".png");
     }
 }

@@ -14,7 +14,8 @@ public class Scene5 extends World implements Scene
     private String[] texts = {"scene4_1.png"};
     private int textsIdx = 0;
     private int kills = 0;
-    private int numZombiesLeft = 1; 
+    private int numZombiesLeft = 1;
+    private Text healthText = new Text();
     
     /**
      * Constructor for objects of class Scene3.
@@ -45,6 +46,9 @@ public class Scene5 extends World implements Scene
         
         addObject(starduck, 0, starduck.getY()); 
         addZombie(true);
+        
+        healthHUD(starduck.getHealth());
+        addObject(healthText, 75, 20);
     }
     
     public void beginDialog() {
@@ -86,7 +90,7 @@ public class Scene5 extends World implements Scene
        int x = ran.nextInt(1);
        
        kills++;
-       if(kills < 11) {
+       if(kills < 6) {
            if (kills % 2 == 0) {
                if(x == 0)
                   addZombie(true);
@@ -102,5 +106,9 @@ public class Scene5 extends World implements Scene
            starduck.setAdvance(true);
        }
        
+    }
+    
+    public void healthHUD(int health) {
+        healthText.setImage(health + ".png");
     }
 }
