@@ -61,11 +61,11 @@ public class Scene7 extends World implements Scene
         int x = ran.nextInt(3);
         
         if(x == 0)
-            addObject(new Zombie(this), 0, 0);
+            addObject(new Zombie(this, false), 0, 0);
         else if(x == 1)
-            addObject(new Zombie(this), 300, 0);
+            addObject(new Zombie(this, false), 300, 0);
         else
-            addObject(new Zombie(this), 600, 0);
+            addObject(new Zombie(this, false), 600, 0);
 
         numZombiesLeft--;
     }

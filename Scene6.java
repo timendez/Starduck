@@ -42,9 +42,9 @@ public class Scene6 extends World implements Scene
         addObject(new OscillatingPlatform(0, 300, 1), 450, 600);
         
         // Baddies
-        addObject(new Zombie(this), 400, 340);
-        addObject(new Zombie(this), 500, 340);
-        addObject(new Zombie(this), 600, 340);
+        addObject(new Zombie(this, false), 400, 340);
+        addObject(new Zombie(this, false), 500, 340);
+        addObject(new Zombie(this, false), 600, 340);
         
         healthHUD(starduck.getHealth());
         addObject(healthText, 75, 20);
@@ -68,11 +68,11 @@ public class Scene6 extends World implements Scene
         int x = ran.nextInt(3);
         
         if(x == 0)
-            addObject(new Zombie(this), 0, 0);
+            addObject(new Zombie(this, false), 0, 0);
         else if(x == 1)
-            addObject(new Zombie(this), 300, 0);
+            addObject(new Zombie(this, false), 300, 0);
         else
-            addObject(new Zombie(this), 600, 0);
+            addObject(new Zombie(this, false), 600, 0);
 
         numZombiesLeft--;
     }

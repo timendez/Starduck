@@ -63,7 +63,7 @@ public class Scene3 extends World implements Scene
     }
     
     private void addZombie() {
-        addObject(new Zombie(this), 600, 340);
+        addObject(new Zombie(this, false), 600, 340);
         zombieSpawned = true;
     }
     

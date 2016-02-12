@@ -38,12 +38,12 @@ public class Scene8 extends World implements Scene {
         
         //Start Zombies
         addZombie();
-        addObject(new Zombie(this), 600, 338);
-        addObject(new Zombie(this), 300, 200);
-        addObject(new Zombie(this), 400, 338);
-        addObject(new Zombie(this), 4, 200);
-        addObject(new Zombie(this), 350, 338);
-        addObject(new Zombie(this), 125, 200);
+        addObject(new Zombie(this, false), 600, 338);
+        addObject(new Zombie(this, false), 300, 200);
+        addObject(new Zombie(this, false), 400, 338);
+        addObject(new Zombie(this, false), 4, 200);
+        addObject(new Zombie(this, false), 350, 338);
+        addObject(new Zombie(this, false), 125, 200);
         
         healthHUD(starduck.getHealth());
         addObject(healthText, 75, 20);
@@ -59,11 +59,11 @@ public class Scene8 extends World implements Scene {
     }
 
     public void nextScene(StarDuck starduck) {
-        Greenfoot.setWorld(new Victory());
+        Greenfoot.setWorld(new Scene9(starduck));
     }
 
     private void addZombie() {
-        addObject(new Zombie(this), 600, 50);
+        addObject(new Zombie(this, false), 600, 50);
     }
     
     public void zombieDied() {

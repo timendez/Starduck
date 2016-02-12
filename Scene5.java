@@ -67,18 +67,18 @@ public class Scene5 extends World implements Scene
     private void addZombie(boolean fromRight) {
         if (fromRight) { 
             if(numZombiesLeft % 2 == 0) {
-                addObject(new Zombie(this), 600, 150);
+                addObject(new Zombie(this, false), 600, 150);
             }
             else {
-                addObject(new Zombie(this), 600, 340);
+                addObject(new Zombie(this, false), 600, 340);
             }
         }
         else {
             if(numZombiesLeft % 2 == 0) {
-                addObject(new Zombie(this), 0, 150);
+                addObject(new Zombie(this, false), 0, 150);
             }
             else {
-                addObject(new Zombie(this), 0, 340);
+                addObject(new Zombie(this, false), 0, 340);
             }
         }
         

@@ -48,8 +48,11 @@ public class Scene1 extends World implements Scene
     }
     
     public void dismissDialog() {
-        removeObject(text);
-        voice.stop();
+        try{
+            removeObject(text);
+            voice.stop();
+        }
+        catch(Exception e) {}
     }
     
     public void nextScene(StarDuck starduck) {
