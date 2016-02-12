@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Zombie extends Character
 {
     private String[] walking = {"zombiewalk1.png", "zombiewalk2.png", "zombiewalk3.png", "zombiewalk4.png"};
+    private String[] flying = {"zombiefly1.png", "zombiefly2.png", "zombiefly3.png", "zombiefly4.png"};
     private int walkIdx = 0;
     private int health = 2;
     private Scene currentScene;
@@ -19,22 +20,44 @@ public class Zombie extends Character
     private int littleBit = LITTLEBIT_DEFAULT;
     private int[] backAndForth = new int[3];
     private int backAndForthIdx = 0;
+    private boolean isFlying = false;
+    private String currentSceneStr;
 
     /**
      * Act - do whatever the Zombie wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() {
-        super.act();
-        
+        if(isFlying)
+            setImage(flying[walkIdx]);
+        else {
+            super.act();
+            setImage(walking[walkIdx]);
+        }
+            
         walkIdx = walkIdx == 3 ? 0 : walkIdx + 1;
-        setImage(walking[walkIdx]);
-        
-        if(currentScene.toString().substring(0, 6).equals("Scene8")) {
+
+        if(currentSceneStr.equals("Scene8")) {
             if(goingLeft) {
                 if(getY() > 300 && getX() - 2 <= 0)
                     setLocation(600, 50);
                 else if(getX() - 2 <= 0)
+                    goingLeft = false;
+                else
+                    setLocation(getX() - 2, getY());
+            }
+            else {
+                if(getX() + 2 >= 600)
+                    goingLeft = true;
+                else {
+                    setLocation(getX() + 2, getY());
+                    getImage().mirrorHorizontally();
+                }
+            }
+        }
+        else if(currentSceneStr.equals("Scene9")) {
+            if(goingLeft) {
+                if(getX() - 2 <= 0)
                     goingLeft = false;
                 else
                     setLocation(getX() - 2, getY());
@@ -90,9 +113,11 @@ public class Zombie extends Character
         otherZombieCollision();
     }
     
-    public Zombie(Scene currentScene) {
+    public Zombie(Scene currentScene, boolean fly) {
         super();
         this.currentScene = currentScene;
+        currentSceneStr = currentScene.toString().substring(0, 6);
+        isFlying = fly;
     }
     
     public void takeDamage(int damage) {

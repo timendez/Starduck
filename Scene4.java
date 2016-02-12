@@ -52,10 +52,10 @@ public class Scene4 extends World implements Scene
     
     private void addZombie(boolean fromRight) {
         if (fromRight) {  
-            addObject(new Zombie(this), 600, 340);
+            addObject(new Zombie(this, false), 600, 340);
         }
         else {
-            addObject(new Zombie(this), 0, 340);
+            addObject(new Zombie(this, false), 0, 340);
         }
     }
     
